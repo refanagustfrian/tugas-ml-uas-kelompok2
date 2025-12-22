@@ -212,25 +212,3 @@ st.markdown(
     unsafe_allow_html=True
 )
 
-# ======================================================
-# ELBOW METHOD
-# ======================================================
-st.subheader("📉 Elbow Method")
-st.caption("Menentukan jumlah cluster optimal")
-
-inertia = []
-K_range = range(1, 11)
-
-for k_elbow in K_range:
-    km = KMeans(n_clusters=k_elbow, random_state=42)
-    km.fit(X_scaled)
-    inertia.append(km.inertia_)
-
-fig_elbow, ax = plt.subplots(figsize=(7,5))
-ax.plot(K_range, inertia, marker='o')
-ax.set_xlabel("Jumlah Cluster (k)")
-ax.set_ylabel("Inertia")
-ax.set_title("Grafik Elbow Method")
-ax.grid(alpha=0.3)
-
-st.pyplot(fig_elbow)
